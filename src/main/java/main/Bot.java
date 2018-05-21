@@ -27,16 +27,10 @@ public class Bot extends Slacklet {
 		final Gson gson = new Gson();
 		final JsonReader reader = new JsonReader(new FileReader("./student.json"));
 		students = gson.fromJson(reader, STUDENT_MAP_TYPE);
-		
-		for(String key:students.keySet()) {
-        	System.out.println(key + "->" + students.get(key));
-        }
 	}
 
 	@Override
-	public void onDirectMessagePosted(SlackletRequest request, SlackletResponse response) {
-		System.out.println("===============================");
-		
+	public void onDirectMessagePosted(SlackletRequest request, SlackletResponse response) {		
 		final String content = request.getContent();
 		final String position = getPosition(content);
 		if(position == null){
