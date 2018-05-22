@@ -1,1 +1,1 @@
-web: java -jar ./build/libs/Bot.jar
+java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar
