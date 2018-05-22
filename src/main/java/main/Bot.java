@@ -18,7 +18,6 @@ import com.google.gson.stream.JsonReader;
 public class Bot extends Slacklet {
 
 	private final Map<String, List<String>> students;
-	
 	private static final Type STUDENT_MAP_TYPE = new TypeToken<Map<String, List<String>>>(){}.getType();
 	private static final Pattern POSITION_PATTERN = Pattern.compile("@[BMDbmd][1-4]");
 	
@@ -37,23 +36,21 @@ public class Bot extends Slacklet {
 		final String content = request.getContent();
 		final String position = getPosition(content);
 		if(position == null){
-			response.reply("ƒŠƒNƒGƒXƒg‚ªŠÔˆá‚¦‚Ä‚¢‚Ü‚·");
+			response.reply("ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒé–“é•ãˆã¦ã„ã¾ã™");
 			return;
 		}
 
 		if(students.get(position).size() == 0) {
-			response.reply("‚»‚Ìg•ª‚Ìl‚Í‚¢‚È‚¢‚æ‚¤‚Å‚·");
+			response.reply("ãã®èº«åˆ†ã®äººã¯ã„ã¾ã›ã‚“");
 			return;	
 		}
 		
-		// ƒƒbƒZ[ƒW‚Ìæ“¾
 		String message = content.replaceAll("^@[BMDbmd][1-4]\\s+", "");
 
 		if(message == null || message.length() == 0){
-			response.reply("ƒƒbƒZ[ƒW‚ª‚È‚¢‚Å‚·");
+			response.reply("æœ¬æ–‡ãŒã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}else {
-			// ƒƒ“ƒVƒ‡ƒ“‚Ìæ“¾
 			String mentions = "";
 			for(String student : students.get(position)) {
 				mentions += "<@" + student.toString() + ">";
