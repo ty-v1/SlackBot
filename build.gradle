@@ -13,6 +13,13 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
+version = 1.0
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
