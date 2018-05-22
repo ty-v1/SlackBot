@@ -23,12 +23,15 @@ public class Bot extends Slacklet {
 	private static final Pattern POSITION_PATTERN = Pattern.compile("@[BMDbmd][1-4]");
 	
 	public Bot(String jsonFileName) throws IOException{	
-
 		final Gson gson = new Gson();
 		final JsonReader reader = new JsonReader(new FileReader("./student.json"));
 		students = gson.fromJson(reader, STUDENT_MAP_TYPE);
 	}
 
+	public Bot(Map<String, List<String>> _students) {
+		students = _students;
+	}
+	
 	@Override
 	public void onDirectMessagePosted(SlackletRequest request, SlackletResponse response) {		
 		final String content = request.getContent();
@@ -38,6 +41,11 @@ public class Bot extends Slacklet {
 			return;
 		}
 
+		if(students.get(position).size() == 0) {
+			response.reply("その身分の人はいないようです");
+			return;	
+		}
+		
 		// メッセージの取得
 		String message = content.replaceAll("^@[BMDbmd][1-4]\\s+", "");
 
