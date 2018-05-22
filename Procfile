@@ -1,1 +1,1 @@
-web: java ./build/classes/java/main/main/Main.class
+web: java -jar ./build/libs/Bot.jar
