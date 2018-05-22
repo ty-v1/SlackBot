@@ -15,11 +15,6 @@ compileJava {
 
 version = 1.0
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'main.Main'
-    }
-}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -44,6 +39,15 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+    from configurations.compile.collect {
+    	it.isDirectory()? it : zipTree(it)
+    }
 }
 
 defaultTasks "clean", "build"
