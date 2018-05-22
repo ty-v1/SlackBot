@@ -1,1 +1,1 @@
-web: java -jar ~/build/libs/Bot-1.0.jar
+web: java -jar ~/build/libs/Bot-1.0.jar $PORT
