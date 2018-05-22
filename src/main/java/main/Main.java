@@ -37,7 +37,7 @@ public class Main {
 		try {
 			server = new ServerSocket();
 			server.bind(new InetSocketAddress(//
-					"polar-hollows-97033.herokuapp.com",port));
+					"localhost",port));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
