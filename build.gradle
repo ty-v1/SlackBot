@@ -35,3 +35,5 @@ dependencies {
 }
 
 defaultTasks "clean", "build"
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
