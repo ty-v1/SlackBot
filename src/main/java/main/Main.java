@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +36,9 @@ public class Main {
 		// herokuでのR10防止
 		// 意味はないが引数のポートにバインドする
 		try {
-			server = new ServerSocket();
-			server.bind(new InetSocketAddress(//
-					"localhost",port));
+			server = new ServerSocket(port);
+			if(!server.isBound())
+				System.exit(1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
