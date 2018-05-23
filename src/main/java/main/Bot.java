@@ -45,17 +45,18 @@ public class Bot extends Slacklet {
 			return;	
 		}
 		
-		String message = content.replaceAll("^@[BMDbmd][1-4]\\s+", "");
-
+		final String message = content.replaceAll("^@[BMDbmd][1-4]\\s+", "");
+		final String sender = request.getSender().getId();
 		if(message == null || message.length() == 0){
 			response.reply("本文がありません");
 			return;
 		}else {
 			String mentions = "";
 			for(String student : students.get(position)) {
-				mentions += "<@" + student.toString() + ">";
+				if(!student.equals(sender))
+					mentions += "<@" + student.toString() + ">";
 			}
-			final String post = mentions + "\n" + message;
+			final String post = mentions + "\n" + message + "\n\n" + "from:<@" + sender + ">";
 			request.getService().sendMessageTo("random", post);
 		}
 	}
